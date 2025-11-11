@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Run-test
 
 on:
@@ -20,8 +18,9 @@ jobs:
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run tests
         run: |
-          pytest
+          python -m pytest
