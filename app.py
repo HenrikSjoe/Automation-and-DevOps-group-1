@@ -11,7 +11,6 @@ cities = {
     "Oxelösund": (58.67, 17.10),
     "Sankt Petersburg": (59.57, 30.19),
     "Tasjkent": (41.18, 69.16),
-    "Reykjavik": (64.14, -21.94)
 }
 
 city = st.selectbox("Välj stad", list(cities.keys()))
