@@ -9,6 +9,9 @@ on:
 
     workflow_dispatch:
 
+env:                                    
+  IMAGE_NAME: weather-app-docker-repo
+
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -36,4 +39,13 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/weather-app-docker-repo:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: docker
+    if: success()
+    
+    steps:
+      - name: Build complete
+        run: echo "Docker image built and pushed"
