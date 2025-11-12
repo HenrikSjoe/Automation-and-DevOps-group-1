@@ -8,7 +8,7 @@ def test_get_weather_mock(mock_get):
     mock_get.return_value.json.return_value = {
         "hourly": {
             "time": ["2024-11-10T10:00", "2024-11-10T11:00"],
-            "temperature_2m": [15.0, 16.0]
+            "temperature_2m": [15.0, "16.0"]
         }
     }
 
