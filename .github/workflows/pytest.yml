@@ -5,8 +5,8 @@ on:
     branches: [ "main" ]
 
   workflow_dispatch:
-      inputs:
-      log_errors:
+    inputs:        
+      log_errors:  
         description: "Generate error log if tests fail"
         required: true
         default: "false"
