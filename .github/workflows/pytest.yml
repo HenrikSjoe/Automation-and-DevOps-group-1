@@ -34,3 +34,29 @@ jobs:
       - name: Run tests
         run: |
           pytest
+
+      - name: Generate error log
+        if: failure() && github.event.inputs.log_errors == 'true'
+        run: |
+          echo "Tests failed on $(date)" > error-log.txt
+          pytest --verbose >> error-log.txt 2>&1 || true
+
+      - name: Upload error log artifact
+        if: failure() && github.event.inputs.log_errors == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-error-log
+          path: error-log.txt
+      
+      - name: Generate error log
+        if: failure() && github.event.inputs.log_errors == 'true'
+        run: |
+          echo "Tests failed on $(date)" > error-log.txt
+          pytest --verbose >> error-log.txt 2>&1 || true
+
+      - name: Upload error log artifact
+        if: failure() && github.event.inputs.log_errors == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-error-log
+          path: error-log.txt
