@@ -36,12 +36,15 @@ jobs:
 
       - name: Run tests
         run: |
+          echo "Running on branch: ${{ github.ref_name }}"
           pytest
 
       - name: Generate error log
         if: failure() && github.event.inputs.log_errors == 'true'
         run: |
           echo "Tests failed on $(date)" > error-log.txt
+          echo "Branch: ${{ github.ref_name }}" >> error-log.txt
+          echo "Commit: ${{ github.sha }}" >> error-log.txt
           pytest --verbose >> error-log.txt 2>&1 || true
 
       - name: Upload error log artifact
